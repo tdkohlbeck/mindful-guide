@@ -1,11 +1,11 @@
 {
-  "name": "react-engine-example-app",
+  "name": "mindful-guide",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
     "start": "webpack && node app.js"
   },
-  "author": "Sam Selvanathan (sjasel@gmail.com)",
+  "author": "Travis Kohlbeck",
   "dependencies": {
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
