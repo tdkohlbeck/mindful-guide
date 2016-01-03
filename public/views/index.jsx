@@ -3,7 +3,7 @@
 var React = require('react');
 var Router = require('react-router');
 var Book = require('./book.jsx');
-//var ToC = require('./ToC.jsx');
+var ToC = require('./ToC.jsx');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -17,8 +17,12 @@ module.exports = React.createClass({
     });
   },
   getToCDisplay: function() {
-    if (this.state.showToC) return 'block';
+    if (this.state.showToC) return 'flex';
     else return 'none';
+  },
+  getToCButtonText: function() {
+    if (this.state.showToC) return 'Table of Contents';
+    else return 'ToC';
   },
   render: function() {
     return (
@@ -27,16 +31,13 @@ module.exports = React.createClass({
           <button
             name='toc'
             id='toc-button'
-            onClick={this.toggleToC}
-          >
-            ToC
+            onClick={this.toggleToC}>
+            {this.getToCButtonText()}
           </button>
-          <div id='toc' style={{display: this.getToCDisplay()}}>
-            I'm the Table of Contents!
-          </div>
         </div>
-        <div id='bottom-fade'></div>
+        <ToC display={this.getToCDisplay()} />
         <Book bookContents={this.props.bookContents} />
+        <div id='bottom-fade'></div>
       </div>
     );
   }

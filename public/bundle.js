@@ -51,7 +51,7 @@
 	var Routes = __webpack_require__(1);
 
 	// import the react-engine's client side booter
-	var ReactEngineClient = __webpack_require__(203);
+	var ReactEngineClient = __webpack_require__(204);
 
 	// boot options
 	var options = {
@@ -60,7 +60,7 @@
 	  // supply a function that can be called
 	  // to resolve the file that was rendered.
 	  viewResolver: function (viewName) {
-	    return __webpack_require__(205)("./" + viewName);
+	    return __webpack_require__(206)("./" + viewName);
 	  }
 	};
 
@@ -23754,7 +23754,7 @@
 	var React = __webpack_require__(2);
 	var Router = __webpack_require__(158);
 	var Book = __webpack_require__(202);
-	//var ToC = require('./ToC.jsx');
+	var ToC = __webpack_require__(203);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -23770,7 +23770,10 @@
 	    });
 	  },
 	  getToCDisplay: function () {
-	    if (this.state.showToC) return 'block';else return 'none';
+	    if (this.state.showToC) return 'flex';else return 'none';
+	  },
+	  getToCButtonText: function () {
+	    if (this.state.showToC) return 'Table of Contents';else return 'ToC';
 	  },
 	  render: function () {
 	    return React.createElement(
@@ -23784,18 +23787,13 @@
 	          {
 	            name: 'toc',
 	            id: 'toc-button',
-	            onClick: this.toggleToC
-	          },
-	          'ToC'
-	        ),
-	        React.createElement(
-	          'div',
-	          { id: 'toc', style: { display: this.getToCDisplay() } },
-	          'I\'m the Table of Contents!'
+	            onClick: this.toggleToC },
+	          this.getToCButtonText()
 	        )
 	      ),
-	      React.createElement('div', { id: 'bottom-fade' }),
-	      React.createElement(Book, { bookContents: this.props.bookContents })
+	      React.createElement(ToC, { display: this.getToCDisplay() }),
+	      React.createElement(Book, { bookContents: this.props.bookContents }),
+	      React.createElement('div', { id: 'bottom-fade' })
 	    );
 	  }
 	});
@@ -23824,6 +23822,27 @@
 /* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var React = __webpack_require__(2);
+	var Router = __webpack_require__(158);
+
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      { id: 'toc', style: { display: this.props.display } },
+	      'I\'m the ToC!'
+	    );
+	  }
+	});
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/*-------------------------------------------------------------------------------------------------------------------*\
 	|  Copyright (C) 2015 PayPal                                                                                          |
 	|                                                                                                                     |
@@ -23841,7 +23860,7 @@
 
 	'use strict';
 
-	var Config = __webpack_require__(204);
+	var Config = __webpack_require__(205);
 
 	// declaring like this helps in unit test
 	// dependency injection using `rewire` module
@@ -23923,7 +23942,7 @@
 
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23940,10 +23959,12 @@
 	};
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
+		"./ToC": 203,
+		"./ToC.jsx": 203,
 		"./book": 202,
 		"./book.jsx": 202,
 		"./index": 201,
@@ -23962,7 +23983,7 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 205;
+	webpackContext.id = 206;
 
 
 /***/ }

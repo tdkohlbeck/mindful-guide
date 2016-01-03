@@ -13,4 +13,4 @@ coverage
 
 # Dependency directory
 node_modules
-public/bundle.js
+./public/bundle.js

@@ -7,7 +7,23 @@ body {
   margin: 0px;
 }
 
+#container {
+  display: flex;
+}
+
+#toc {
+  order: 1;
+  flex: 1 0 auto;
+
+  padding: 20px;
+  width: 200px;
+  background-color: purple;
+}
+
 #book-contents {
+  order: 2;
+  flex: 2 1 auto;
+
   font-size: 20px;
   font-family: Georgia, serif;
   color: #f8f8f8;
@@ -41,13 +57,14 @@ h1 {
 }
 
 #toc-button {
+
   font-size: 20px;
   background-color: #373340;
   color: grey;
   border: 1px dotted grey;
   border-radius: 5px;
   height: 30px;
-  width: 60px;
+  /*width: 60px;*/
 }
 
 #toc-button:hover {
