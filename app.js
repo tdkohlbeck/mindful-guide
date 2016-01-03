@@ -4,7 +4,7 @@ require('babel-register')({
   presets: ['react']
 });
 
-var PORT = 3000;
+var PORT = 3001;
 var fs = require('fs');
 var path = require('path');
 var marked = require('marked');
