@@ -14,7 +14,9 @@ var renderer = require('react-engine');
 var app = express();
 
 // create the view engine with `react-engine`
-var reactRoutesFilePath = path.join(__dirname + '/public/routes.jsx');
+var reactRoutesFilePath = path.join(
+  __dirname + '/public/routes.jsx'
+);
 
 var engine = renderer.server.create({
   routes: require(reactRoutesFilePath),
@@ -36,21 +38,29 @@ app.set('view', renderer.expressView);
 // expose public folder as static assets
 app.use(express.static(path.join(__dirname, '/public')));
 
-var bookContents;
+var bookText;
 var bookPath = path.join(__dirname, 'book.txt');
 
 fs.readFile(bookPath, 'utf8', function(err, data) {
   if (err) { console.log(err); }
-  bookContents = marked(data);
+  bookText = marked(data);
 });
+
+// logging
+var date, time, count = 0;
 
 // add our app routes
 app.get('*', function(req, res) {
+  count++;
+  console.log('get got! %s', count)
   res.render(req.url, {
-    bookContents: bookContents
+    bookText: bookText
   });
 });
 
 var server = app.listen(PORT, function() {
-  console.log('Example app listening at http://localhost:%s', PORT);
+  console.log(
+    'Example app listening at http://localhost:%s',
+    PORT
+  );
 });

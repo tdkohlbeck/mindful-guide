@@ -3,40 +3,44 @@
 var React = require('react');
 var Router = require('react-router');
 var Book = require('./book.jsx');
-var ToC = require('./ToC.jsx');
+var Toc = require('./ToC.jsx');
 
 module.exports = React.createClass({
   getInitialState: function() {
-    return {
-      showToC: false,
-    };
+    return {toc: false};
   },
-  toggleToC: function() {
-    this.setState({
-      showToC: !this.state.showToC,
-    });
+  toggle: function() {
+    this.setState( {toc: !this.state.toc} );
   },
-  getToCDisplay: function() {
-    if (this.state.showToC) return 'flex';
+  /*getToCDisplay: function() {
+    if (this.state.toc) return 'flex';
     else return 'none';
   },
   getToCButtonText: function() {
-    if (this.state.showToC) return 'Table of Contents';
+    if (this.state.toc) return 'Table of Contents';
     else return 'ToC';
-  },
+  },*/
   render: function() {
+    var buttonText, tocDisplay;
+    if (this.state.toc) {
+      buttonText = 'Table of Contents';
+      tocDisplay = 'flex';
+    } else {
+      buttonText = 'ToC';
+      tocDisplay = 'none';
+    }
     return (
       <div id='container'>
+        <Toc display={tocDisplay} />
+        <Book bookContents={this.props.bookContents} />
         <div id='menu-bar'>
           <button
             name='toc'
             id='toc-button'
-            onClick={this.toggleToC}>
-            {this.getToCButtonText()}
+            onClick={this.toggle}>
+            {buttonText}
           </button>
         </div>
-        <ToC display={this.getToCDisplay()} />
-        <Book bookContents={this.props.bookContents} />
         <div id='bottom-fade'></div>
       </div>
     );

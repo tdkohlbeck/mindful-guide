@@ -23754,31 +23754,39 @@
 	var React = __webpack_require__(2);
 	var Router = __webpack_require__(158);
 	var Book = __webpack_require__(202);
-	var ToC = __webpack_require__(203);
+	var Toc = __webpack_require__(203);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
 	  getInitialState: function () {
-	    return {
-	      showToC: false
-	    };
+	    return { toc: false };
 	  },
-	  toggleToC: function () {
-	    this.setState({
-	      showToC: !this.state.showToC
-	    });
+	  toggle: function () {
+	    this.setState({ toc: !this.state.toc });
 	  },
-	  getToCDisplay: function () {
-	    if (this.state.showToC) return 'flex';else return 'none';
+	  /*getToCDisplay: function() {
+	    if (this.state.toc) return 'flex';
+	    else return 'none';
 	  },
-	  getToCButtonText: function () {
-	    if (this.state.showToC) return 'Table of Contents';else return 'ToC';
-	  },
+	  getToCButtonText: function() {
+	    if (this.state.toc) return 'Table of Contents';
+	    else return 'ToC';
+	  },*/
 	  render: function () {
+	    var buttonText, tocDisplay;
+	    if (this.state.toc) {
+	      buttonText = 'Table of Contents';
+	      tocDisplay = 'flex';
+	    } else {
+	      buttonText = 'ToC';
+	      tocDisplay = 'none';
+	    }
 	    return React.createElement(
 	      'div',
 	      { id: 'container' },
+	      React.createElement(Toc, { display: tocDisplay }),
+	      React.createElement(Book, { bookContents: this.props.bookContents }),
 	      React.createElement(
 	        'div',
 	        { id: 'menu-bar' },
@@ -23787,12 +23795,10 @@
 	          {
 	            name: 'toc',
 	            id: 'toc-button',
-	            onClick: this.toggleToC },
-	          this.getToCButtonText()
+	            onClick: this.toggle },
+	          buttonText
 	        )
 	      ),
-	      React.createElement(ToC, { display: this.getToCDisplay() }),
-	      React.createElement(Book, { bookContents: this.props.bookContents }),
 	      React.createElement('div', { id: 'bottom-fade' })
 	    );
 	  }
@@ -23830,6 +23836,7 @@
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
+	  componentWillMount: function () {},
 	  render: function () {
 	    return React.createElement(
 	      'div',

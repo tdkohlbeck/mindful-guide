@@ -72,6 +72,10 @@ h1 {
   border: 1px solid #f8f8f8;
 }
 
+#toc-button:focus {
+  outline: none;
+}
+
 #bottom-fade {
   position: fixed;
   bottom: 0px;
