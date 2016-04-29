@@ -5,7 +5,7 @@ var Router = require('react-router');
 
 module.exports = React.createClass({
   componentWillMount: function() {
-    this.links = this.props.chapters.map( (chapter, i) => {
+    this.links = this.props.chapters.map(function(chapter, i) {
       return (
         <li key={i}>
           <a href={'#' + this.props.chapterIds[i]}
