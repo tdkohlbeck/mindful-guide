@@ -9,6 +9,9 @@ module.exports = React.createClass({
       <html>
         <head>
           <meta charSet='utf-8' />
+          <meta
+            name='viewport'
+            content='width=device-width, initial-scale=1' />
           <title>Mindful Guide</title>
           <link rel='stylesheet' href='/stylesheet.css'></link>
         </head>
