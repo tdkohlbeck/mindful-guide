@@ -23785,12 +23785,12 @@
 	    return React.createElement(
 	      'div',
 	      { id: 'container' },
+	      React.createElement(Book, { text: this.props.bookText }),
 	      React.createElement(Toc, {
 	        display: tocDisplay,
 	        chapters: this.props.chapters,
 	        chapterIds: this.props.chapterIds
 	      }),
-	      React.createElement(Book, { text: this.props.bookText }),
 	      React.createElement(
 	        'div',
 	        { id: 'menu-bar' },

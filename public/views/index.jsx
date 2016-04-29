@@ -31,12 +31,12 @@ module.exports = React.createClass({
     }
     return (
       <div id='container'>
+        <Book text={this.props.bookText} />
         <Toc
           display={tocDisplay}
           chapters={this.props.chapters}
           chapterIds={this.props.chapterIds}
         />
-        <Book text={this.props.bookText} />
         <div id='menu-bar'>
           <button
             name='toc'
