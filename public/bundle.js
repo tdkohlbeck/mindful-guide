@@ -23842,13 +23842,14 @@
 	  displayName: 'exports',
 
 	  componentWillMount: function () {
-	    this.links = this.props.chapters.map((chapter, i) => {
+	    var chapterIds = this.props.chapterIds;
+	    this.links = this.props.chapters.map(function (chapter, i) {
 	      return React.createElement(
 	        'li',
 	        { key: i },
 	        React.createElement(
 	          'a',
-	          { href: '#' + this.props.chapterIds[i],
+	          { href: '#' + chapterIds[i],
 	            rel: 'internal' },
 	          chapter
 	        )

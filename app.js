@@ -65,7 +65,7 @@ app.get('*', function(req, res) {
   res.render(req.url, {
     bookText: bookText,
     chapters: chapters,
-    chapterIds: chapterIds
+    chapterIds: chapterIds,
   });
 });
 
