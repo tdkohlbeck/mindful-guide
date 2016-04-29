@@ -1,3 +1,4 @@
+// book.jsx (Book component)
 'use strict';
 
 var React = require('react');
@@ -8,7 +9,7 @@ module.exports = React.createClass({
     return (
       <div
         id='book-contents'
-        dangerouslySetInnerHTML={{ __html: this.props.bookContents }}
+        dangerouslySetInnerHTML={{ __html: this.props.text }}
       ></div>
     );
   }

@@ -23785,8 +23785,12 @@
 	    return React.createElement(
 	      'div',
 	      { id: 'container' },
-	      React.createElement(Toc, { display: tocDisplay }),
-	      React.createElement(Book, { bookContents: this.props.bookContents }),
+	      React.createElement(Toc, {
+	        display: tocDisplay,
+	        chapters: this.props.chapters,
+	        chapterIds: this.props.chapterIds
+	      }),
+	      React.createElement(Book, { text: this.props.bookText }),
 	      React.createElement(
 	        'div',
 	        { id: 'menu-bar' },
@@ -23808,6 +23812,7 @@
 /* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// book.jsx (Book component)
 	'use strict';
 
 	var React = __webpack_require__(2);
@@ -23819,7 +23824,7 @@
 	  render: function () {
 	    return React.createElement('div', {
 	      id: 'book-contents',
-	      dangerouslySetInnerHTML: { __html: this.props.bookContents }
+	      dangerouslySetInnerHTML: { __html: this.props.text }
 	    });
 	  }
 	});
@@ -23836,12 +23841,33 @@
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
-	  componentWillMount: function () {},
+	  componentWillMount: function () {
+	    this.links = this.props.chapters.map((chapter, i) => {
+	      return React.createElement(
+	        'li',
+	        { key: i },
+	        React.createElement(
+	          'a',
+	          { href: '#' + this.props.chapterIds[i],
+	            rel: 'internal' },
+	          chapter
+	        )
+	      );
+	    });
+	  },
 	  render: function () {
 	    return React.createElement(
 	      'div',
 	      { id: 'toc', style: { display: this.props.display } },
-	      'I\'m the ToC!'
+	      React.createElement(
+	        'div',
+	        { id: 'chapter-list-wrapper' },
+	        React.createElement(
+	          'ul',
+	          { id: 'chapter-list' },
+	          this.links
+	        )
+	      )
 	    );
 	  }
 	});

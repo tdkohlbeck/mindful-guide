@@ -14,15 +14,57 @@ body {
 #toc {
   order: 1;
   flex: 1 0 auto;
+  position: absolute;
 
   padding: 20px;
-  width: 200px;
-  background-color: purple;
+  padding-top: 0px;
+  width: 300px;
+  height: 100%
+  background-color: #373340;
 }
+
+#chapter-list-wrapper {
+  display: block;
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  overflow: auto;
+}
+
+#chapter-list {
+  display: block;
+  position: absolute;
+  font-family: sans-serif;
+  font-size: 20px;
+  color: #f8f8f8;
+  padding-left: 0px;
+  width: 300px;
+  margin: 40px 0px;
+}
+
+#chapter-list li {
+  padding-top: 15px;
+  list-style: none;
+}
+
+a:link {
+  text-decoration: none;
+  color: grey; /*#f8f8f8;*/
+}
+
+a:visited {
+  color: grey; /*#f8f8f8;*/
+}
+
+a:hover {
+  color: #f8f8f8;
+}
+
 
 #book-contents {
   order: 2;
   flex: 2 1 auto;
+  position: absolute;
 
   font-size: 20px;
   font-family: Georgia, serif;
@@ -30,6 +72,8 @@ body {
   background-color: #373340;
 
   padding: 0px 80px;
+  height: 100%;
+  overflow: auto;
 }
 
 p {
@@ -44,7 +88,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  margin-top: 80px;
+  margin-top: 50px;
+  padding-top: 30px;
 }
 
 #menu-bar {

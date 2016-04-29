@@ -7,9 +7,10 @@ require('babel-register')({
 var PORT = 3001;
 var fs = require('fs');
 var path = require('path');
-var marked = require('marked');
+var mdToHtml = require('marked');
 var express = require('express');
 var renderer = require('react-engine');
+var cheerio = require('cheerio');
 
 var app = express();
 
@@ -38,12 +39,20 @@ app.set('view', renderer.expressView);
 // expose public folder as static assets
 app.use(express.static(path.join(__dirname, '/public')));
 
+// make html from book text and parse for chapter info
 var bookText;
-var bookPath = path.join(__dirname, 'book.txt');
+const bookPath = path.join(__dirname, 'book.txt');
+var chapters = [];
+var chapterIds = [];
 
-fs.readFile(bookPath, 'utf8', function(err, data) {
+fs.readFile(bookPath, 'utf8', (err, data) => {
   if (err) { console.log(err); }
-  bookText = marked(data);
+  bookText = mdToHtml(data);
+  var $ = cheerio.load(bookText);
+  $('h1').each(function(i) {
+    chapters[i] = $(this).text();
+    chapterIds[i] = $(this).attr('id');
+  });
 });
 
 // logging
@@ -52,9 +61,11 @@ var date, time, count = 0;
 // add our app routes
 app.get('*', function(req, res) {
   count++;
-  console.log('get got! %s', count)
+
   res.render(req.url, {
-    bookText: bookText
+    bookText: bookText,
+    chapters: chapters,
+    chapterIds: chapterIds
   });
 });
 
