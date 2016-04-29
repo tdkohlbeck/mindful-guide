@@ -45,7 +45,7 @@ var bookPath = path.join(__dirname, 'book.txt');
 var chapters = [];
 var chapterIds = [];
 
-fs.readFile(bookPath, 'utf8', (err, data) => {
+fs.readFile(bookPath, 'utf8', function(err, data) {
   if (err) { console.log(err); }
   bookText = mdToHtml(data);
   var $ = cheerio.load(bookText);
