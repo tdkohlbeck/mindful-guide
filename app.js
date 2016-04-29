@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 // make html from book text and parse for chapter info
 var bookText;
-const bookPath = path.join(__dirname, 'book.txt');
+var bookPath = path.join(__dirname, 'book.txt');
 var chapters = [];
 var chapterIds = [];
 
